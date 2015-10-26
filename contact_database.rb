@@ -2,9 +2,7 @@ require 'csv'
 
 class ContactDatabase
 
-  def initialize
-    choice = gets.chomp.to_sym
-    
+  def initialize(choice)
     case choice
     when :new
     when :list
