@@ -1,6 +1,4 @@
-## TODO: Implement CSV reading/writing
 require 'csv'
-# require_relative './contacts.csv'
 
 class ContactDatabase
 
@@ -18,7 +16,7 @@ class ContactDatabase
 
   def list
     contacts = CSV.read('contacts.csv')
-    puts contacts
+    puts contacts.inspect
   end
 
   # CSV.open('contacts.csv', 'a') do |contact|
