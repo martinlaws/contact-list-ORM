@@ -12,9 +12,14 @@ class ContactDatabase
     end
   end
 
+  def new
+
+  end
+
   def list
-    contacts = CSV.read('contacts.csv')
-    puts contacts.inspect
+    @contacts = CSV.read('contacts.csv').each do |row| 
+    puts row.inspect
+    end
   end
 
   # CSV.open('contacts.csv', 'a') do |contact|
