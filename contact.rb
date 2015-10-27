@@ -1,15 +1,16 @@
-require 'csv'
-require 'pry'
+require_relative './contact_database'
 
 class Contact
  
-  attr_accessor :name, :email
+  attr_accessor :id, :name, :email, :phone
 
-  def initialize(id, name, email)
-    @id = id
+  def initialize (name, email, phone)
+    @id = (ContactDatabase.all.length + 1)
     @name = name
     @email = email
-    @new_contact = [@id, @name, @email]
+    @phone = Array.new()
+    @phone.push(phone.to_i)
+    @new_contact = [@id, @name, @email, @phone]
     Contact.create(@new_contact)
   end
  
@@ -33,15 +34,11 @@ class Contact
     end
  
     def all
-      @contacts = CSV.read('contacts.csv').each do |row| 
-        puts row.inspect
-      end
+      ContactDatabase.all
     end
     
-    def show(id)
-      # TODO: Show a contact, based on ID
-    end
-    
+    # def show(id)
+    #   # TODO: Show a contact, based on IDirb
+    # end
   end
- 
 end
