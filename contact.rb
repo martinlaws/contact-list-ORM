@@ -1,9 +1,16 @@
+require 'csv'
+require 'pry'
+
 class Contact
  
   attr_accessor :name, :email
 
-  def initialize(name, email)
-    # TODO: assign local variables to instance variables
+  def initialize(id, name, email)
+    @id = id
+    @name = name
+    @email = email
+    @new_contact = [@id, @name, @email]
+    Contact.create(@new_contact)
   end
  
   def to_s
@@ -12,16 +19,21 @@ class Contact
  
   ## Class Methods
   class << self
-    def create(name, email)
-      # TODO: Will initialize a contact as well as add it to the list of contacts
-    end
+    def create(new_contact)
+      CSV.open("contacts.csv", "a") do |csv|
+        csv << new_contact
+      end #ends CSV.open do
+      all
+    end #ends create method
  
     def find(term)
       # TODO: Will find and return contacts that contain the term in the first name, last name or email
     end
  
     def all
-      # TODO: Return the list of contacts, as is
+      @contacts = CSV.read('contacts.csv').each do |row| 
+        puts row.inspect
+      end
     end
     
     def show(id)

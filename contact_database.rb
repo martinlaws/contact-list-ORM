@@ -5,20 +5,17 @@ class ContactDatabase
   def initialize(choice)
     case choice
     when :new
+      puts "Please enter the new contact's id #:"
+      id = gets.chomp
+      puts "Please enter the new contact's name:"
+      name = gets.chomp
+      puts "Please enter the new contact's email:"
+      email = gets.chomp
+      Contact.new(id, name, email)
     when :list
-      list
+      Contact.all
     when :show
     when :find
-    end
-  end
-
-  def new
-
-  end
-
-  def list
-    @contacts = CSV.read('contacts.csv').each do |row| 
-    puts row.inspect
     end
   end
 
