@@ -21,20 +21,7 @@ class ContactDatabase
     end
 
     def save_file(new_contact_array)
-      CSV.open("contacts.csv", "a") do |csv|
-        csv << new_contact_array
-      end
-    end
- 
-    def all
-      @contacts = CSV.read('contacts.csv').each do |row| 
-        # puts row.join("#") 
-      end
-    end
-    
-    def show(id)
-      # TODO: Show a contact, based on IDirb
-    end
-    
+      CSV.open("contacts.csv", "a") { |csv| csv << new_contact_array }
+    end # ends save_file
   end # ends class << self
 end #ends class ContactDatabase

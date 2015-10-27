@@ -7,7 +7,7 @@ class Contact
   attr_accessor :id, :name, :email, :phone
 
   def initialize (name, email, phone)
-    @id = (ContactDatabase.all.length + 1)
+    @id = (@@local_array.length + 1)
     @name = name
     @email = email
     @phone = Array.new()
@@ -16,6 +16,7 @@ class Contact
     ContactDatabase.save_file(@new_contact)
   end
  
+ # TODO - reformat output
   # def to_s
   #   puts row.inspect.join('#')
   # end
@@ -26,11 +27,11 @@ class Contact
     def find(term)
       @term = term
       @match = (@@local_array.select { |row| row.include?(@term) })
-      return @match
+      @match
     end
  
     def all
-      return @@local_array
+      @@local_array
     end
     
     def show(id)

@@ -14,8 +14,6 @@ class Application
 
     case choice
     when :new
-      # puts "Please enter the new contact's id #:"
-      # id = gets.chomp
       puts "Please enter the new contact's name:"
       name = gets.chomp
       puts "Please enter the new contact's email:"
