@@ -23,16 +23,17 @@ class Application
       puts "Please enter the new contact's phone number(s):"
       phone = gets.chomp
       Contact.new(name, email, phone)
+      puts "Contact added!"
     when :list
       puts Contact.all
     when :show
       puts "Please enter your search ID:"
       term = gets.chomp
-      Contact.show(term)
+      puts Contact.show(term)
     when :find
       puts "Please enter your search string (id, full first and last name or email):"
       term = gets.chomp
-      Contact.find(term)
+      puts Contact.find(term)
     else
       Application.new
     end

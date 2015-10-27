@@ -12,7 +12,6 @@ class ContactDatabase
     @phone = Array.new()
     @phone.push(phone.to_i)
     @new_contact = [@id, @name, @email, @phone]
-    # Contact.create(@new_contact)
   end
   
   class << self
@@ -26,16 +25,10 @@ class ContactDatabase
         csv << new_contact_array
       end
     end
-
-    # def create(new_contact)
-    #   CSV.open("contacts.csv", "a") do |csv|
-    #     csv << new_contact
-    #   end #ends CSV.open do
-    # end #ends create method
  
     def all
       @contacts = CSV.read('contacts.csv').each do |row| 
-        puts row.join("#") 
+        # puts row.join("#") 
       end
     end
     

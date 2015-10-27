@@ -16,9 +16,9 @@ class Contact
     ContactDatabase.save_file(@new_contact)
   end
  
-  def to_s
-    puts row.inspect.join('#')
-  end
+  # def to_s
+  #   puts row.inspect.join('#')
+  # end
  
   ## Class Methods
   class << self
@@ -26,15 +26,15 @@ class Contact
     def find(term)
       @term = term
       @match = (@@local_array.select { |row| row.include?(@term) })
-      puts @match.join('#')
+      return @match
     end
  
     def all
-      puts ContactDatabase.load_file
+      return @@local_array
     end
     
     def show(id)
-      ContactDatabase.find(id)
+      Contact.find(id)
     end
   end
 end
