@@ -13,9 +13,9 @@ class Contact
     Contact.create(@new_contact)
   end
  
-  def to_s
-    # TODO: return string representation of Contact
-  end
+  # def to_s
+  #   @contacts
+  # end
  
   ## Class Methods
   class << self
@@ -27,7 +27,9 @@ class Contact
     end #ends create method
  
     def find(term)
-      # TODO: Will find and return contacts that contain the term in the first name, last name or email
+      @term = term
+      @match = CSV.read('contacts.csv', 'r').select { |row| row.include?(@term) }
+      puts @match
     end
  
     def all

@@ -16,6 +16,9 @@ class ContactDatabase
       Contact.all
     when :show
     when :find
+      puts "Please enter your search string (id, full first and last name or email):"
+      term = gets.chomp
+      Contact.find(term)
     end
   end
 
