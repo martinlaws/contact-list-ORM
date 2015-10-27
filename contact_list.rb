@@ -24,7 +24,7 @@ class Application
       phone = gets.chomp
       Contact.new(name, email, phone)
     when :list
-      Contact.all
+      puts Contact.all
     when :show
       puts "Please enter your search ID:"
       term = gets.chomp

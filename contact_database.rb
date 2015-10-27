@@ -1,4 +1,5 @@
 require 'csv'
+require 'pry'
 
 class ContactDatabase
 
@@ -11,26 +12,30 @@ class ContactDatabase
     @phone = Array.new()
     @phone.push(phone.to_i)
     @new_contact = [@id, @name, @email, @phone]
-    Contact.create(@new_contact)
+    # Contact.create(@new_contact)
   end
   
   class << self
-    def create(new_contact)
-      CSV.open("contacts.csv", "a") do |csv|
-        csv << new_contact
-      end #ends CSV.open do
-      all
-    end #ends create method
- 
-    def find(term)
-      @term = term
-      @match = CSV.read('contacts.csv', 'r').select { |row| row.include?(@term) }
-      puts @match
+
+    def load_file
+      return CSV.read("contacts.csv", "r")
     end
+
+    def save_file(new_contact_array)
+      CSV.open("contacts.csv", "a") do |csv|
+        csv << new_contact_array
+      end
+    end
+
+    # def create(new_contact)
+    #   CSV.open("contacts.csv", "a") do |csv|
+    #     csv << new_contact
+    #   end #ends CSV.open do
+    # end #ends create method
  
     def all
       @contacts = CSV.read('contacts.csv').each do |row| 
-        puts row.inspect
+        puts row.join("#") 
       end
     end
     

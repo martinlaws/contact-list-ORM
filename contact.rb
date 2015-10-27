@@ -2,7 +2,8 @@ require_relative './contact_database'
 require 'pry'
 
 class Contact
- 
+@@local_array = ContactDatabase.load_file
+
   attr_accessor :id, :name, :email, :phone
 
   def initialize (name, email, phone)
@@ -12,26 +13,24 @@ class Contact
     @phone = Array.new()
     @phone.push(phone.to_i)
     @new_contact = [@id, @name, @email, @phone]
-    Contact.create(@new_contact)
+    ContactDatabase.save_file(@new_contact)
   end
  
-  # def to_s
-  #   @contacts
-  # end
+  def to_s
+    puts row.inspect.join('#')
+  end
  
   ## Class Methods
   class << self
-    def create(new_contact)
-      @new_contact = new_contact
-      ContactDatabase.create(@new_contact)
-    end 
 
     def find(term)
-      ContactDatabase.find(term)
+      @term = term
+      @match = (@@local_array.select { |row| row.include?(@term) })
+      puts @match.join('#')
     end
  
     def all
-      ContactDatabase.all
+      puts ContactDatabase.load_file
     end
     
     def show(id)
