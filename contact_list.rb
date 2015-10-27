@@ -26,6 +26,9 @@ class Application
     when :list
       Contact.all
     when :show
+      puts "Please enter your search ID:"
+      term = gets.chomp
+      Contact.show(term)
     when :find
       puts "Please enter your search string (id, full first and last name or email):"
       term = gets.chomp

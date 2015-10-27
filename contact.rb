@@ -1,4 +1,5 @@
 require_relative './contact_database'
+require 'pry'
 
 class Contact
  
@@ -21,24 +22,20 @@ class Contact
   ## Class Methods
   class << self
     def create(new_contact)
-      CSV.open("contacts.csv", "a") do |csv|
-        csv << new_contact
-      end #ends CSV.open do
-      all
-    end #ends create method
- 
+      @new_contact = new_contact
+      ContactDatabase.create(@new_contact)
+    end 
+
     def find(term)
-      @term = term
-      @match = CSV.read('contacts.csv', 'r').select { |row| row.include?(@term) }
-      puts @match
+      ContactDatabase.find(term)
     end
  
     def all
       ContactDatabase.all
     end
     
-    # def show(id)
-    #   # TODO: Show a contact, based on IDirb
-    # end
+    def show(id)
+      ContactDatabase.find(id)
+    end
   end
 end
