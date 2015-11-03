@@ -35,9 +35,22 @@ class Application
       id = gets.chomp
       puts ContactDatabase.find(id)
     when :find
-      puts "Please enter your search string (id, full first and last name or email):"
-      term = gets.chomp
-      puts ContactDatabase.find_by_lastname(term)
+      puts "Would you like to search by:"
+      puts "    -f // First Name"
+      puts "    -l // Last Name"
+      choice = gets.chomp.to_sym
+      case choice
+      when :f
+        puts "Please enter the first name you would like to search for:"
+        term = gets.chomp
+        puts ContactDatabase.find_by_firstname(term)
+      when :l
+        puts "Please enter the last name you would like to search for:"
+        term = gets.chomp
+        puts ContactDatabase.find_by_lastname(term)
+      else
+        Application.new
+      end
     when :delete
       puts "Please enter the ID of the contact you would like to delete:"
       id = gets.chomp
