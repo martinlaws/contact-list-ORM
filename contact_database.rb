@@ -57,13 +57,13 @@ class ContactDatabase
       end
     end
 
-    def find_by_email(email)
-      results = connection.exec_params('SELECT * FROM contacts WHERE email=$1;', [email])
-      hash = results[0]
-      if hash
-        Contact.new(hash['id'], hash['firstname'], hash['lastname'], hash['email'], hash['phone'].split("$"))
-      end
-    end
+    # def find_by_email(email)
+    #   results = connection.exec_params('SELECT * FROM contacts WHERE email=$1;', [email])
+    #   hash = results[0]
+    #   if hash
+    #     Contact.new(hash['id'], hash['firstname'], hash['lastname'], hash['email'], hash['phone'].split("$"))
+    #   end
+    # end
 
     def delete(id)
       results = connection.exec_params('DELETE FROM contacts WHERE id=$1;', [id])   
