@@ -34,12 +34,23 @@ class ContactDatabase
     end
 
     def find(id)
-      results = connection.exec_params('SELECT * from contacts WHERE id=$1', [id])
+      results = connection.exec_params('SELECT * FROM contacts WHERE id=$1;', [id])
       hash = results[0]
       if hash
         Contact.new(hash['id'], hash['firstname'], hash['lastname'], hash['email'], hash['phone'].split("$"))
       end
     end
 
+    def find_by_lastname(lastname)
+      results = connection.exec_params('SELECT * FROM contacts WHERE lastname=$1;', [lastname])
+      hash = results[0]
+      if hash
+        Contact.new(hash['id'], hash['firstname'], hash['lastname'], hash['email'], hash['phone'].split("$"))
+      end
+    end
+
+    def delete(id)
+      results = connection.exec_params('DELETE FROM contacts WHERE id=$1;', [id])   
+    end
   end # ends class << self
 end #ends class ContactDatabase

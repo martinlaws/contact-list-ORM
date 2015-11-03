@@ -18,7 +18,7 @@ class Contact
   end
  
   # Class Methods
-  class << self
+  # class << self
     # def find(term)
     #   @term = term
     #   @match = (@@local_array.select { |row| row.include?(@term) })
@@ -33,5 +33,5 @@ class Contact
     #   Contact.find(id)
     # end
 
-  end # ends class << self
+  # end # ends class << self
 end # ends Contact class

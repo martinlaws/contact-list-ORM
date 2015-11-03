@@ -12,13 +12,14 @@ class Application
     puts "    list - List all contacts"
     puts "    show - Show a contact"
     puts "    find - Find a contact"
+    puts "    delete - delete a contact"
     choice = gets.chomp.to_sym
 
     case choice
     when :new
       puts "Please enter the new contact's first name:"
       firstname = gets.chomp
-      puts "Please enter the new contact's first name:"
+      puts "Please enter the new contact's last name:"
       lastname = gets.chomp
       puts "Please enter the new contact's email:"
       email = gets.chomp
@@ -33,10 +34,15 @@ class Application
       puts "Please enter your search ID:"
       id = gets.chomp
       puts ContactDatabase.find(id)
-    # when :find
-    #   puts "Please enter your search string (id, full first and last name or email):"
-    #   term = gets.chomp
-    #   puts Contact.find(term)
+    when :find
+      puts "Please enter your search string (id, full first and last name or email):"
+      term = gets.chomp
+      puts ContactDatabase.find_by_lastname(term)
+    when :delete
+      puts "Please enter the ID of the contact you would like to delete:"
+      id = gets.chomp
+      ContactDatabase.delete(id)
+      puts "Contact deleted!"
     else
       Application.new
     end
